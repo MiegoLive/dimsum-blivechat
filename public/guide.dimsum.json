@@ -1,0 +1,16 @@
+{
+  "name": "点心BLC",
+  "version": "1.9.0-beta1",
+  "base": "/dimsum-blivechat-2024-danmaku/",
+  "description": "支持B站、B站开放平台、AcFun、抖音。",
+  "pages": [
+    {
+      "name": "设置",
+      "path": "",
+      "width": 1920,
+      "height": 1080,
+      "description": "打开设置页面。",
+      "openInBrowserAppMode": true
+    }
+  ]
+}
