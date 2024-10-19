@@ -20,7 +20,8 @@
                     --float-distance-x: ${message.floatDistanceX}px;
                     --float-distance-y: ${message.floatDistanceY}px;
                     --float-time: ${getFloatTime}s;`
-                    " :randomXOffset="randomXOffset||undefined" :randomYOffset="randomYOffset||undefined" :time="message.time"
+                    " :randomXOffset="randomXOffset||undefined" :randomYOffset="randomYOffset||undefined"
+                  :time="message.time" :time-format="message.timeFormat"
                   :avatarUrl="message.avatarUrl" :authorName="message.authorName" :medalName="message.medalName"
                   :medalLevel="message.medalLevel" :isFanGroup="message.isFanGroup||undefined"
                   :privilegeType="message.privilegeType" :msgType="message.msgType"
@@ -32,7 +33,8 @@
                     --float-distance-y: ${message.floatDistanceY}px;
                     --float-time: ${getFloatTime}s;`
                     " :mergeSameUserDanmaku="mergeSameUserDanmaku" :textColor="message.textColor"
-                  :randomXOffset="randomXOffset||undefined" :randomYOffset="randomYOffset||undefined" :time="message.time"
+                  :randomXOffset="randomXOffset||undefined" :randomYOffset="randomYOffset||undefined"
+                  :time="message.time" :time-format="message.timeFormat"
                   :avatarUrl="message.avatarUrl" :authorName="message.authorName" :authorType="message.authorType"
                   :privilegeType="message.privilegeType" :repeated="message.repeated"
                   :repeatedThread="message.repeatedThread" :threadLength="message.threadLength"
@@ -44,7 +46,8 @@
                     --float-distance-x: ${message.floatDistanceX}px;
                     --float-distance-y: ${message.floatDistanceY}px;
                     --float-time: ${getFloatTime}s;`
-                    " :randomXOffset="randomXOffset||undefined" :randomYOffset="randomYOffset||undefined" :time="message.time"
+                    " :randomXOffset="randomXOffset||undefined" :randomYOffset="randomYOffset||undefined"
+                  :time="message.time" :time-format="message.timeFormat"
                   :avatarUrl="message.avatarUrl" :authorName="getShowAuthorName(message)" :price="message.price"
                   :content="getGiftShowContentLocal(message)" :giftName="message.giftName"
                   :isDelete="message.isDelete||undefined"></paid-message>
@@ -54,7 +57,8 @@
                     --float-distance-x: ${message.floatDistanceX}px;
                     --float-distance-y: ${message.floatDistanceY}px;
                     --float-time: ${getFloatTime}s;`
-                    " :randomXOffset="randomXOffset||undefined" :randomYOffset="randomYOffset||undefined" :time="message.time"
+                    " :randomXOffset="randomXOffset||undefined" :randomYOffset="randomYOffset||undefined"
+                  :time="message.time" :time-format="message.timeFormat"
                   :avatarUrl="message.avatarUrl" :authorName="getShowAuthorName(message)" :price="message.price"
                   :guardNum="message.guardNum" :guardUnit="message.guardUnit" :privilegeType="message.privilegeType"
                   :title="message.title" :isDelete="message.isDelete||undefined"></membership-item>
@@ -64,7 +68,8 @@
                     --float-distance-x: ${message.floatDistanceX}px;
                     --float-distance-y: ${message.floatDistanceY}px;
                     --float-time: ${getFloatTime}s;`
-                    " :randomXOffset="randomXOffset||undefined" :randomYOffset="randomYOffset||undefined" :time="message.time"
+                    " :randomXOffset="randomXOffset||undefined" :randomYOffset="randomYOffset||undefined"
+                  :time="message.time" :time-format="message.timeFormat"
                   :avatarUrl="message.avatarUrl" :authorName="getShowAuthorName(message)" :price="message.price"
                   :content="getShowContent(message)" :isDelete="message.isDelete||undefined"></paid-message>
               </template>

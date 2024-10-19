@@ -22,7 +22,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { getTimeTextHourMin } from '../../utils'
+import { getTimeTextByFormat } from '../../utils'
 
 const props = defineProps<{
   avatarUrl: string
@@ -30,11 +30,12 @@ const props = defineProps<{
   privilegeType: 0 | 1 | 2 | 3
   title: string
   time: Date
+  timeFormat?: string
   isDelete?: boolean
 }>()
 
 const timeText = computed(() => {
-  return getTimeTextHourMin(props.time)
+  return getTimeTextByFormat(props.time, props.timeFormat)
 })
 </script>
 

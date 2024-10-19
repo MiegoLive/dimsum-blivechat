@@ -54,6 +54,23 @@ export function getTimeTextHourMin(date: Date) {
   return `${hour}:${min}`
 }
 
+export function getTimeTextByFormat(date: Date, format: string = 'HH:mm') {
+  let year = date.getFullYear().toString()
+  let month = `0${date.getMonth() + 1}`.slice(-2)
+  let day = `0${date.getDate()}`.slice(-2)
+  let hour = `0${date.getHours()}`.slice(-2)
+  let min = `00${date.getMinutes()}`.slice(-2)
+  let sec = `00${date.getSeconds()}`.slice(-2)
+  let res = format.replace('YYYY', year)
+   .replace('YY', year.slice(-2))
+   .replace('MM', month)
+   .replace('DD', day)
+   .replace('HH', hour)
+   .replace('mm', min)
+   .replace('ss', sec)
+  return res
+}
+
 export function getUuid4Hex() {
   let chars = []
   for (let i = 0; i < 32; i++) {

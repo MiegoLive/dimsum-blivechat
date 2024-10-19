@@ -35,7 +35,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { getPriceConfig } from './constants';
-import { formatCurrency, getTimeTextHourMin } from '../../utils';
+import { formatCurrency, getTimeTextByFormat } from '../../utils';
 
 
 const props = defineProps<{
@@ -44,6 +44,7 @@ const props = defineProps<{
   giftName?: string,
   price: number, // 价格，人民币
   time: Date,
+  timeFormat?: string,
   content: string,
   isDelete?: boolean
 }>()
@@ -58,7 +59,7 @@ const priceText = computed(() => {
 })
 
 const timeText = computed(() => {
-  return getTimeTextHourMin(props.time)
+  return getTimeTextByFormat(props.time, props.timeFormat)
 })
 </script>
 

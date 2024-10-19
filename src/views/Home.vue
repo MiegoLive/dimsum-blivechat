@@ -543,6 +543,12 @@
                 <el-radio value="kana">{{ t('home.kana') }}</el-radio>
               </el-radio-group>
             </el-form-item>
+            <div class="form-group">
+              <el-form-item label="时间格式化">
+                <el-input v-model="form.timeFormat" type="text"></el-input>
+                <span style="font-size: 14px; opacity: 0.6;">预览：{{ getTimeTextByFormat(new Date(), form.timeFormat) }}</span>
+              </el-form-item>
+            </div>
           </el-form>
         </el-tab-pane>
 
@@ -804,6 +810,7 @@ import download from 'downloadjs'
 import * as chatConfig from '../api/chatConfig'
 import { mergeConfig, Config } from '../utils'
 import Slider from '@vueform/slider'
+import { getTimeTextByFormat } from '../utils'
 
 const { t, tm, rt, locale } = useI18n()
 const router = useRouter()

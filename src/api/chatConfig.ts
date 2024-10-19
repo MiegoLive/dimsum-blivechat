@@ -74,6 +74,8 @@ export const DEFAULT_CONFIG: Config = {
   compatibilityGiftToGuardBuyEnabled: false,
   compatibilityGiftToGuardBuy: [100, 1000, 10000],
 
+  timeFormat: 'HH:mm',
+
   giftUsernamePronunciation: '',
 
   emoticons: [] // [{ keyword: '', url: '' }, ...]

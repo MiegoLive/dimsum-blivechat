@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, computed, watch, useTemplateRef } from 'vue';
+import { ref, onMounted, onBeforeUnmount, computed, watch, useTemplateRef, provide } from 'vue';
 import { mergeConfig, toBool, toInt, toFloat, Config, emoticon } from '../utils'
 import { Trie } from '../utils/trie'
 import { PronunciationConverter } from '../utils/pronunciation'
@@ -315,6 +315,8 @@ function initConfig() {
     chatConfig.DEFAULT_CONFIG.compatibilityGiftToGuardBuy
   ) as number[]
 
+  cfg.timeFormat = cfg.timeFormat.toString()
+
   cfg.minDanmakuInterval = toInt(cfg.minDanmakuInterval, chatConfig.DEFAULT_CONFIG.minDanmakuInterval)
   cfg.maxDanmakuInterval = toInt(cfg.maxDanmakuInterval, chatConfig.DEFAULT_CONFIG.maxDanmakuInterval)
 
@@ -423,6 +425,7 @@ function onInteractWord(data: Message) {
     type: MESSAGE_TYPE_INTERACT,
     avatarUrl: data.avatarUrl,
     time: new Date(data.timestamp * 1000),
+    timeFormat: config.value.timeFormat,
     msgType: data.msgType,
     authorName: data.authorName,
     authorNamePronunciation: getPronunciation(data.authorName),
@@ -536,6 +539,7 @@ async function onAddText(data: Message) {
     type: MESSAGE_TYPE_TEXT,
     avatarUrl: data.avatarUrl,
     time: new Date(data.timestamp * 1000),
+    timeFormat: config.value.timeFormat,
     authorName: data.authorName,
     authorType: data.authorType,
     content: data.content,
@@ -623,6 +627,7 @@ function onAddGift(data: Message) {
     type: MESSAGE_TYPE_GIFT,
     avatarUrl: data.avatarUrl,
     time: new Date(data.timestamp * 1000),
+    timeFormat: config.value.timeFormat,
     authorName: data.authorName,
     authorNamePronunciation: getPronunciation(data.authorName),
     price: price,
@@ -723,6 +728,7 @@ function onAddMember(data: Message) {
     type: MESSAGE_TYPE_MEMBER,
     avatarUrl: data.avatarUrl,
     time: new Date(data.timestamp * 1000),
+    timeFormat: config.value.timeFormat,
     authorName: data.authorName,
     authorNamePronunciation: getPronunciation(data.authorName),
     privilegeType: data.privilegeType,
@@ -786,6 +792,7 @@ function onAddSuperChat(data: Message) {
     authorNamePronunciation: getPronunciation(data.authorName),
     price: data.price,
     time: new Date(data.timestamp * 1000),
+    timeFormat: config.value.timeFormat,
     content: data.content.trim(),
     translation: data.translation,
     xOffset: xOffset,

@@ -102,7 +102,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { CONTENT_TYPE_TEXT, CONTENT_TYPE_IMAGE, CONTENT_TYPE_EMOTICON, AUTHOR_TYPE_TO_TEXT } from './constants'
-import { getTimeTextHourMin } from '../../utils';
+import { getTimeTextByFormat } from '../../utils';
 
 // HSL
 const RANDOM_TEXT_COLOR_START = [0, 100.0, 55.0]
@@ -114,6 +114,7 @@ const REPEATED_MARK_COLOR_END = [360, 87.3, 69.2]
 const props = defineProps<{
   avatarUrl: string,
   time: Date,
+  timeFormat?: string,
   authorName: string,
   authorType: number,
   medalName?: string,
@@ -140,7 +141,8 @@ function getRepeatedValue(index: number) {
 }
 
 const timeText = computed(() => {
-  return getTimeTextHourMin(props.time)
+  debugger
+  return getTimeTextByFormat(props.time, props.timeFormat)
 })
 
 const authorTypeText = computed(() => {

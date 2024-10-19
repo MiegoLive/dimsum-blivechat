@@ -37,7 +37,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { getTimeTextHourMin } from '../../utils'
+import { getTimeTextByFormat } from '../../utils'
 import { INTERACT_TYPE_ENTER, INTERACT_TYPE_FOLLOW, INTERACT_TYPE_SHARE, INTERACT_TYPE_SPECIAL_FOLLOW } from './constants'
 
 
@@ -51,10 +51,11 @@ const props = defineProps<{
   privilegeType: 0 | 1 | 2 | 3
   msgType: number
   time: Date
+  timeFormat?: string
 }>()
 
 const timeText = computed(() => {
-  return getTimeTextHourMin(props.time)
+  return getTimeTextByFormat(props.time, props.timeFormat)
 })
 
 const interactText = computed(() => {
