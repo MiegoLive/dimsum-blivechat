@@ -116,6 +116,7 @@ export class ChatClientDimSum {
           isFanGroup = p.rawContent.data.fans_medal_wearing_status
         }
         let emoticon = undefined
+        /*
         if (p.platform === 'bilibili') {
           emoticon = p.rawContent.info[0][13].url
         } else if (p.platform === 'openblive') {
@@ -123,6 +124,11 @@ export class ChatClientDimSum {
             emoticon = p.rawContent.data.emoji_img_url
           }
         }
+          */
+        p.CommentBuilder((_comment, stickerUrl, _emots) => {
+          emoticon = stickerUrl
+          return ""
+        });
         let emoticonDetail = undefined
         if (p.platform === 'bilibili') {
           emoticonDetail = p.rawContent.info[0][13]
