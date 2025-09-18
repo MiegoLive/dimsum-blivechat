@@ -46,8 +46,8 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       dimsum-chat:
-        specifier: ^0.3.1
-        version: 0.3.3
+        specifier: ^0.4.3
+        version: 0.4.3
       sass:
         specifier: ^1.75.0
         version: 1.75.0
@@ -615,8 +615,8 @@ packages:
       supports-color:
         optional: true
 
-  dimsum-chat@0.3.3:
-    resolution: {integrity: sha512-hZ755NmsJsuJ6faEL6e0DcZAoKF5vhjQaTYqSORI2iZqTLqEkUXT8pqh1L4fxeOJSOAIzcbu3b1I99O7Q9k8ug==}
+  dimsum-chat@0.4.3:
+    resolution: {integrity: sha512-UO5FY8ulKdVdamv/INO0fXbazt7eGvZWU7T2FjJMagovKeqZ8y373XDAOo15/USUNKTF7nY62FJ1Dzabe4eo/w==}
 
   downloadjs@1.4.7:
     resolution: {integrity: sha512-LN1gO7+u9xjU5oEScGFKvXhYf7Y/empUIIEAGBs1LzUq/rg5duiDrkuH5A2lQGd5jfMOb9X9usDa2oVXwJ0U/Q==}
@@ -1608,7 +1608,7 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
-  dimsum-chat@0.3.3: {}
+  dimsum-chat@0.4.3: {}
 
   downloadjs@1.4.7: {}
 

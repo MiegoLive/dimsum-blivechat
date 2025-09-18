@@ -354,8 +354,11 @@ function initChatClient() {
 
 async function initTextEmoticons() {
   if (config.value.autoRenderOfficialSmallEmoji) {
-    // 合并数组 ChatClientDimSum.openbliveEmots 与 ChatClientDimSum.douyinEmots
-    textEmoticons.value = [...ChatClientDimSum.openbliveEmots,...ChatClientDimSum.douyinEmots]
+    // 合并数组 ChatClientDimSum.openbliveEmots 与 douyinEmots kuaishouEmots
+    textEmoticons.value = [
+      ...ChatClientDimSum.openbliveEmots,
+      ...ChatClientDimSum.douyinEmots,
+      ...ChatClientDimSum.kuaishouEmots]
   }
 }
 

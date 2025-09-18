@@ -20,6 +20,13 @@ const douyinParser = new Parser({
   }
 })
 
+const kuaishouParser = new Parser({
+  type: 'KuaishouCommentFeeds',
+  content: {
+    content: ''
+  }
+})
+
 function getEmotsFromParser(p: Parser, outputEmots: {keyword: string, url: string}[], tag: string): void {
   if (outputEmots.length === 0) {
     p.CommentBuilder((_comment, _stickerUrl, emots) => {
@@ -54,6 +61,7 @@ export class ChatClientDimSum {
 
   static openbliveEmots: {keyword: string, url: string}[] = []
   static douyinEmots: {keyword: string, url: string}[] = []
+  static kuaishouEmots: {keyword: string, url: string}[] = []
 
   running: boolean = false
   constructor() {
@@ -114,6 +122,8 @@ export class ChatClientDimSum {
           isFanGroup = p.rawContent.info[3][3] === this.roomId
         } else if (p.platform === 'openblive') {
           isFanGroup = p.rawContent.data.fans_medal_wearing_status
+        } else {
+          isFanGroup = p.clubLevel !== undefined && p.clubLevel > 0;
         }
         let emoticon = undefined
         /*
@@ -139,6 +149,9 @@ export class ChatClientDimSum {
         }
         if (p.platform === 'douyin') {
           preferEmotTag = 'douyin'
+        }
+        if (p.platform === 'kuaishou') {
+          preferEmotTag = 'kuaishou'
         }
         let data = {
           avatarUrl: crossPlatformAvatar,
@@ -251,6 +264,8 @@ export class ChatClientDimSum {
           isFanGroup = p.rawContent.data.fans_medal?.anchor_roomid === this.roomId
         } else if (p.platform === 'openblive') {
           isFanGroup = p.rawContent.data.fans_medal_wearing_status
+        } else {
+          isFanGroup = p.clubLevel !== undefined && p.clubLevel > 0;
         }
         const data = {
           id: getUuid4Hex(),
@@ -285,3 +300,4 @@ export class ChatClientDimSum {
 
 getEmotsFromParser(openbliveParser, ChatClientDimSum.openbliveEmots, 'openblive')
 getEmotsFromParser(douyinParser, ChatClientDimSum.douyinEmots, 'douyin')
+getEmotsFromParser(kuaishouParser, ChatClientDimSum.kuaishouEmots, 'kuaishou')
