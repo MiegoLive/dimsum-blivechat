@@ -830,6 +830,7 @@ function copyUrl() {
 }
 
 const obsRoomUrl = computed(() => {
+  chatConfig.setLocalConfig(form.value)
   return roomUrl.value
 })
 
