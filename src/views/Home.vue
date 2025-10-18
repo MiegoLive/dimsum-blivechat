@@ -925,7 +925,6 @@ function getUnvalidatedRoomUrl(isTestRoom: boolean) {
       query[name] = form.value[name]
     }
   }
-  //debugger
   Object.assign(query, backFields)
 
   // 去掉和默认值相同的字段，缩短URL长度

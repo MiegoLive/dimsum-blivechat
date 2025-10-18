@@ -22,7 +22,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
   ],
-  base: '/dimsum-blivechat-2024-danmaku/',
+  base: './',
   define: {
     '__APP_VERSION__': JSON.stringify(process.env.npm_package_version),
   }

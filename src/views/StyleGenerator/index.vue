@@ -2,14 +2,31 @@
   <el-row :gutter="20">
     <el-col :sm="24" :md="16">
       <el-form label-width="150px" size="small">
-        <h3>{{ $t('stylegen.result') }}</h3>
+        <el-color-picker v-if="false"/>
+        <!-- <el-input-number /> -->
+        <!-- <el-slider /> -->
+        <!-- <el-input /> -->
+        <!-- <el-select /> -->
+        <!-- <el-switch /> -->
         <el-card shadow="never">
-          <el-form-item label="CSS">
-            <el-input v-model="inputResult" type="textarea" :rows="20"></el-input>
-          </el-form-item>
-          <el-form-item>
+          <el-row :gutter="20">
+            <el-col :xs="24" :sm="12" v-for="item in vizItems" :key="item.label + item.property">
+              <el-form-item :label="item.label">
+                <component :is="item.component" v-bind="item.bind" v-model.lazy="item.value" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-card>
+      </el-form>
+      <el-form label-width="150px" size="small">
+        <h3>{{ $t('stylegen.result') }}</h3>
+        <el-card shadow="never" style="overflow: visible;">
+          <div class="editor-wrapper">
+            <CodeEditor class="code-editor" v-model:value="inputResult" language="css" theme="vs" :options="options" />
+          </div>
+          <div class="actions">
             <el-button type="primary" @click="copyResult">{{ $t('stylegen.copy') }}</el-button>
-          </el-form-item>
+          </div>
         </el-card>
       </el-form>
     </el-col>
@@ -21,12 +38,13 @@
             <el-switch v-model="playAnimation" @change="onPlayAnimationChange"></el-switch>
           </el-form-item>
           <el-form-item :label="$t('stylegen.backgrounds')" style="margin: 0 0 0 30px">
-            <el-switch v-model="exampleBgLight" :active-text="$t('stylegen.light')" :inactive-text="$t('stylegen.dark')"></el-switch>
+            <el-switch v-model="exampleBgLight" :active-text="$t('stylegen.light')"
+              :inactive-text="$t('stylegen.dark')"></el-switch>
           </el-form-item>
         </el-form>
         <div id="example-container" :class="{ light: exampleBgLight }">
           <div id="fakebody">
-            <Room :is-test-room="true" ref="roomRef"/>
+            <Room :is-test-room="true" ref="roomRef" />
           </div>
         </div>
       </el-affix>
@@ -35,34 +53,45 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted, onBeforeUnmount, watch, useTemplateRef } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watch, useTemplateRef } from 'vue'
 import Room from '../Room.vue'
 import { debounce } from '../../utils'
+import { CodeEditor } from 'monaco-editor-vue3'
+import { useViz } from './viz'
 
-const activeTab = ref<'general' | 'legacy' | 'lineLike'>('general')
+const options = {
+  colorDecorators: true,
+  tabSize: 2,
+  automaticLayout: true,
+}
+
+// 动态尝试加载 ./style.css 静态文件作为初始值
+async function tryInitStyle() {
+  const res = await fetch('./style.css')
+  console.log(res)
+  // 判断是否为 css 类型
+  if (res.headers.get('content-type')?.includes('text/css')) {
+    const styleText = await res.text()
+    inputResult.value = styleText
+  }
+}
+
+onMounted(tryInitStyle)
+
 const inputResult = ref('')
 const debounceResult = ref('')
 const playAnimation = ref(true)
 const exampleBgLight = ref(false)
 
+const { vizItems } = useViz(inputResult)
+
 type RoomType = InstanceType<typeof Room>
 const roomRef = useTemplateRef<RoomType>('roomRef')
-
-const subComponentResults = reactive({
-  general: '',
-  legacy: '',
-  lineLike: ''
-})
 
 const styleElement = document.createElement('style')
 document.head.appendChild(styleElement)
 
-const subComponentResult = computed(() => subComponentResults[activeTab.value])
 const exampleCss = computed(() => debounceResult.value.replace(/^body\b/gm, '#fakebody'))
-
-watch(subComponentResult, (val) => {
-  inputResult.value = val
-})
 
 watch(inputResult, debounce((val: string) => {
   debounceResult.value = val
@@ -73,7 +102,7 @@ watch(exampleCss, (val) => {
 })
 
 onMounted(() => {
-  debounceResult.value = inputResult.value = subComponentResult.value
+  debounceResult.value = inputResult.value
 })
 
 onBeforeUnmount(() => {
@@ -147,5 +176,25 @@ function copyResult() {
 #fakebody {
   outline: 1px #999 dashed;
   height: 100%;
+}
+
+.actions {
+  margin: 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+code-editor {
+  resize: vertical;
+  min-height: 400px;
+  overflow: auto;
+}
+
+.editor-wrapper {
+  resize: vertical;
+  overflow: auto;
+  height: 400px;
+  min-height: 400px;
 }
 </style>

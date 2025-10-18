@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, computed, watch, useTemplateRef, provide } from 'vue';
+import { ref, onMounted, onBeforeUnmount, computed, useTemplateRef } from 'vue';
 import { mergeConfig, toBool, toInt, toFloat, Config, emoticon } from '../utils'
 import { Trie } from '../utils/trie'
 import { PronunciationConverter } from '../utils/pronunciation'

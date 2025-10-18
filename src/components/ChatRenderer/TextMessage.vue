@@ -133,7 +133,7 @@ const props = defineProps<{
   maxImage?: number,
   maxEmoji?: number,
   textColor: string,
-  mergeSameUserDanmaku: boolean
+  mergeSameUserDanmaku?: boolean
 }>()
 
 function getRepeatedValue(index: number) {
@@ -141,7 +141,6 @@ function getRepeatedValue(index: number) {
 }
 
 const timeText = computed(() => {
-  debugger
   return getTimeTextByFormat(props.time, props.timeFormat)
 })
 

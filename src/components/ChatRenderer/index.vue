@@ -400,9 +400,11 @@ function forEachRecentMessage(num: number, callback: (message: Message) => boole
   }
 }
 
+/* UNUSE
 function delMessage(id: string) {
   delMessages([id])
 }
+*/
 function delMessages(ids: string[]) {
   enqueueMessages(ids.map(
     id => ({

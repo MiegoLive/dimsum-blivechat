@@ -1,0 +1,22 @@
+:root {
+  /* @viz switch|开关|none,block */
+  --my-switch:none;
+
+  /* @viz color|颜色 */
+  --my-color:#ff0055;
+
+  /* @viz number|数字 */
+  --my-number:8;
+
+  /* @viz slider|滑块|0,32 */
+  --my-slider:12;
+
+  /* @viz input|字符串 */
+  --my-string:calc(100vw-80px);
+
+  /* @viz select|选择|light,dark,other */
+  --my-select:light;
+
+  /* @viz font|字体 */
+  --my-font:微软雅黑;
+}
